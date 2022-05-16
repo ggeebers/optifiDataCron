@@ -1,0 +1,16 @@
+service: footprint-cron
+
+provider: 
+  name: aws
+  runtime: nodejs17.7
+  region: 'ap-souteast-1'
+  framworkVersion: ">=1.43.0"
+  timeout: 900 # in seconds
+functions: 
+  transfer: 
+  handler: handler.transfer
+  events: 
+    # every Monday at 03:15 AM
+    # - schedule: cron(15 3 ? * MON *)
+    - schedule: rate(15 minutes)
+    
